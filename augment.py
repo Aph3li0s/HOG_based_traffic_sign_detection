@@ -37,15 +37,15 @@ def make_augmentation(image_root, num_clone, cls):
         image_path = os.path.join(image_root, image_filename)
         image = cv2.imread(image_path)
         augmented_image = transform(image=image)['image']
-        cv2.imwrite(os.path.join('bbox', f"{i}_{image_filename}"), augmented_image)  # Corrected the saving path
+        # cv2.imwrite(os.path.join('bbox', f"{i}_{image_filename}"), augmented_image)  # Corrected the saving path
 
 if __name__ == '__main__':
     class_lst = data_stat('data/labels') 
-    print(class_lst)
+    # print(class_lst)
     # print(len(class_lst))
     # print(class_lst.index(0))
     for num_cls in class_lst:
         if num_cls < 300:
-            print(class_lst.index(num_cls))
+            # print(class_lst.index(num_cls))
             make_augmentation('bbox', 300-num_cls, class_lst.index(num_cls))
 

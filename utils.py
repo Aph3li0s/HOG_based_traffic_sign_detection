@@ -99,7 +99,7 @@ def normalize_channel(ch, im):
 def transform(image):
     coor_lst = []
     roi = []
-    image = cv2.resize(image, (960, 540))
+    # image = cv2.resize(image, (960, 540))
     for ch in [0, 2]:
         thresholded = normalize_channel(ch, image)
         kernel = np.ones((3,3),np.uint8)

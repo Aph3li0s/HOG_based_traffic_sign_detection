@@ -26,9 +26,8 @@ def read_test(image_root):
     data_dir = os.path.join('data/images', image_root)
     label_dir = os.path.join('data/labels', image_root.replace('jpg', 'txt'))
     width, height = 960, 540
+    # image = cv2.imread(data_dir)
     image = cv2.resize(cv2.imread(data_dir), (width, height))
-    for f in os.listdir('clipped_roi'):
-        os.remove(f'clipped_roi/{f}')
     roi_img, coor_img = transform(image)
     picked_boxes = nms(np.array(coor_img), probs=None, overlapThresh=0.3)
 
@@ -75,7 +74,7 @@ def read_test(image_root):
     ] 
     for obj_box in gt_boxes
     ]
-    mAP = calculate_mAP(gt_boxes2, gt_label, final_boxes2, label, 0.5)
+    mAP = calculate_mAP(gt_boxes2, gt_label, final_boxes2, label, 0.75)
     return mAP
 
 if __name__ == '__main__':
